@@ -1,0 +1,28 @@
+{% extends "blog/base.html" %}
+{% block content %}
+
+    <style>
+        
+    legend{text-align: center;}
+    input{width: 100%; margin-bottom: 15px;}
+    label{width:50%}
+    button{width: 100%; margin-bottom: 25px;}
+    .helptext{text-align: center;display: block;}
+    .si{text-align: center; margin-left: auto; margin-right: auto; display:block;}
+    ul{list-style-type:none;}
+    textarea{width: 100%;}
+
+    </style>
+
+    <form method="POST">
+        {% csrf_token %}
+        <fieldset>
+
+            <legend>Location</legend>
+            {{form}}
+
+        </fieldset>
+        <button type = "submit">Submit</button>
+    </form>
+
+{% endblock content %}

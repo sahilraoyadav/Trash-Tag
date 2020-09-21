@@ -1,0 +1,58 @@
+{% extends "blog/base.html" %}
+{% block content %}
+
+  <style>
+
+    body article .btnObj{
+        width: 32.9%;
+        display: inline-block;
+        text-align: center;
+        padding-top: 8px;
+        padding-bottom: 8px;
+        background-color: #9CCC65;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        box-shadow: 0 2px 8px -4px rgba(0, 0, 0, 0.7);
+        font-weight: 500;
+    }
+
+    .downr{
+      padding-bottom: 15px;
+    }
+
+  </style>
+    
+  <article class="media content-section">
+    <div class="media-body">
+      <div class="title-blue">
+      <h2>{{ object.l_name }}</h2>
+      <p class="article-content less-padding">{{object.description}}</p>
+      <a class="mr-2 clr" target="_blank" href="https://www.google.com/maps/place/{{object.x_cord}},{{object.y_cord}}">Open in Maps X: {{object.x_cord}} Y: {{object.y_cord}}</a>
+      </div>
+      {% if user.is_authenticated %}
+
+      <div class = "downr">
+        <a class = "btnObj" href="{% url 'post-clean' object.l_id %}">CLEAN</a>
+        <a class = "btnObj" href="{% url 'post-update' object.l_id %}">UPDATE</a>
+        <a class = "btnObj" href="{% url 'post-delete' object.l_id %}">DELETE</a> 
+      </div>
+      
+      {% endif %}
+
+
+      {% for clean in cleans %}
+      {% ifequal clean.l_id.l_id object.l_id %}
+      
+      <p><span class = "cdate">{{clean.date_cleaned|date:"M d Y"}}</span> {{clean.description}} <span class="fadegreen">By: {{clean.u_id.username}}</span></p>
+
+      {% endifequal %}
+      {% endfor %}
+
+      <p class = "lowercount">Total times cleaned: {{object.times_cleaned}}</p>
+
+    </div>
+  </article>
+   
+{% endblock content %}
+
+

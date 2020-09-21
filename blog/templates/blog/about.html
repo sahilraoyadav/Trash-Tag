@@ -1,0 +1,38 @@
+{% extends "blog/base.html" %}
+{% block content %}
+
+    <style>
+
+        h1{
+            padding-bottom: 30px;
+        }
+
+        .smallt{
+            font-weight: bold;
+            padding-top: 20px;
+        }
+
+        .center-wide{
+            text-align: center;
+        }
+
+    </style>
+
+    <h1>Site Stats</h1>
+
+    <p class = "smallt">Average Cleans Per Location</p>
+    {% for c in avgCleans %}
+    <p>{{c.average}}</p>
+    {% endfor %}
+
+    <p class = "smallt">All Locations</p>
+    {% for loc in allLoc %}
+    <p>{{loc.l_name}}</p>
+    {% endfor %}
+
+    <p class = "smallt">All Locations that have been cleaned more than twice</p>
+    {% for loc in viewLoc %}
+    <p>{{loc}}</p>
+    {% endfor %}
+
+{% endblock content %}

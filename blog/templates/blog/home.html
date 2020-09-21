@@ -1,0 +1,25 @@
+{% extends "blog/base.html" %}
+{% block content %}
+    {% for loc in locations %}
+        <article class="media content-section">
+          <div class="media-body">
+            <div class="title-blue">
+            <h2><a href="{% url 'post-detail' loc.l_id %}">{{ loc.l_name }}</a></h2>
+            <p class="article-content less-padding">{{loc.description}}</p>
+            <a class="mr-2 clr" target="_blank" href="https://www.google.com/maps/place/{{loc.x_cord}},{{loc.y_cord}}">Open in Maps X: {{loc.x_cord}} Y: {{loc.y_cord}}</a>
+            </div>
+            {% for clean in cleaned %}
+            {% ifequal clean.l_id.l_id loc.l_id %}
+            
+            <p><span class = "cdate">{{clean.date_cleaned|date:"M d Y"}}</span> {{clean.description}} <span class="fadegreen">By: {{clean.u_id.username}}</span></p>
+
+            {% endifequal %}
+            {% endfor %}
+
+            <p class = "lowercount">Total times cleaned: {{loc.times_cleaned}}</p>
+          </div>
+        </article>
+    {% endfor %}
+{% endblock content %}
+
+
